@@ -194,8 +194,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextView" destination="ii6-6e-kY0" id="lW5-L1-gva"/>
-                        <outlet property="mealImageView" destination="s1B-hQ-7sl" id="QT1-Zr-bCQ"/>
                         <outlet property="nameTextField" destination="hRS-K4-JsA" id="hkx-Iv-Lna"/>
+                        <outlet property="selectedImageView" destination="s1B-hQ-7sl" id="XtF-im-cPi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozj-57-es8" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -29,6 +29,8 @@ public class Document: NSManagedObject {
         }
         
         self.modifiedDate = Date(timeIntervalSinceNow: 0)
+        //self.rawImage = rawImage
+
     }
     
     func update(name: String, content: String?) {
@@ -41,5 +43,7 @@ public class Document: NSManagedObject {
         }
     
         self.modifiedDate = Date(timeIntervalSinceNow: 0)
+        
+        //self.rawImage = rawImage
     }
 }

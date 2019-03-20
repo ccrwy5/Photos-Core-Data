@@ -1,13 +1,15 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class DocumentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
-    @IBOutlet weak var mealImageView: UIImageView!
+    //@IBOutlet weak var mealImageView: UIImageView!
     
+    @IBOutlet weak var selectedImageView: UIImageView!
     var document: Document?
     
     var imagePickerController = UIImagePickerController()
@@ -50,11 +52,22 @@ class DocumentViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let content = contentTextView.text
         
+        if let imageData = document?.rawImage as Data? {
+            let myImage = UIImage(data: imageData)!
+        }
+        
         if document == nil {
             document = Document(name: documentName, content: content)
         } else {
             document?.update(name: documentName, content: content)
         }
+        
+        
+//        if document == nil {
+//            document = Document(name: documentName, content: content, rawImage: myImage)
+//        } else {
+//            document?.update(name: documentName, content: content, rawImage: myImage)
+//        }
         
         if let document = document {
             do {
@@ -97,15 +110,23 @@ class DocumentViewController: UIViewController, UIImagePickerControllerDelegate,
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imagefromLibrary = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            mealImageView.image = imagefromLibrary
+            selectedImageView.image = imagefromLibrary
+            let imageData = imagefromLibrary.pngData() as NSData?
+            
+            document?.rawImage = imageData
+            
+//            if let imageData = rawImage as Data? {
+//                return UIImage(data: imageData)
+//            }
+            
+            
         }
+        
         dismiss(animated: true, completion: nil)
     }
     
 }
-
-    
-    
-
